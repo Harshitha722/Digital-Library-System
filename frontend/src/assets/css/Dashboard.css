@@ -1,0 +1,58 @@
+.dashboard{
+
+    padding:40px;
+}
+
+.dashboard h1{
+
+    margin-bottom:25px;
+}
+
+.stats-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(
+      auto-fit,
+      minmax(250px,1fr)
+    );
+
+    gap:25px;
+}
+
+.stat-card{
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:15px;
+
+    box-shadow:
+    0 5px 15px rgba(0,0,0,.08);
+
+    transition:.3s;
+}
+
+.stat-card:hover{
+
+    transform:
+    translateY(-5px);
+}
+
+.stat-card h3{
+
+    color:#64748b;
+}
+
+.stat-card p{
+
+    margin-top:15px;
+
+    font-size:32px;
+
+    font-weight:700;
+
+    color:#2563eb;
+}
