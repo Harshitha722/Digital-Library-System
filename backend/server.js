@@ -16,6 +16,15 @@ require("./routes/authRoutes");
 const errorHandler =
 require("./middleware/errorMiddleware");
 
+const bookRoutes =
+require("./routes/bookRoutes");
+
+const categoryRoutes =
+require("./routes/categoryRoutes");
+
+const dashboardRoutes =
+require("./routes/dashboardRoutes");
+
 connectDB();
 
 const app = express();
@@ -27,6 +36,21 @@ app.use(express.json());
 app.use(
     "/api/auth",
     authRoutes
+);
+
+app.use(
+"/api/books",
+bookRoutes
+);
+
+app.use(
+"/api/categories",
+categoryRoutes
+);
+
+app.use(
+"/api/dashboard",
+dashboardRoutes
 );
 
 app.get("/",(req,res)=>{

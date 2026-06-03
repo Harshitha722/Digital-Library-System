@@ -19,10 +19,15 @@ const userSchema = new mongoose.Schema(
     },
 
     role:{
-        type:String,
-        enum:["admin","student"],
-        default:"student"
-    },
+    type:String,
+    enum:[
+        "admin",
+        "librarian",
+        "teacher",
+        "student"
+    ],
+    default:"student"
+},
 
     phone:{
         type:String
