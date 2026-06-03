@@ -1,73 +1,85 @@
-import Navbar
-from "../components/Navbar";
+import { useEffect, useState } from "react";
+
+import Navbar from "../components/Navbar";
+import Sidebar from "../components/Sidebar";
+import StatCard from "../components/StatCard";
+
+import API from "../services/api";
 
 import "../assets/css/Dashboard.css";
 
 const Dashboard = () => {
 
-  const user =
-  JSON.parse(
-  localStorage.getItem("user")
-  );
+  const [stats, setStats] =
+  useState({});
+
+  useEffect(() => {
+
+    const fetchStats = async () => {
+
+      try {
+
+        const res =
+        await API.get(
+          "/dashboard/stats"
+        );
+
+        setStats(
+          res.data
+        );
+
+      } catch (error) {
+
+        console.log(error);
+      }
+    };
+
+    fetchStats();
+
+  }, []);
 
   return (
 
     <>
-
       <Navbar />
 
-      <div className="dashboard">
+      <div className="dashboard-layout">
 
-        <h1>
+        <Sidebar />
 
-          Welcome,
-          {" "}
-          {user?.name}
+        <div className="dashboard-content">
 
-        </h1>
+          <h1>
+            Dashboard
+          </h1>
 
-        <div
-          className="stats-grid"
-        >
+          <div className="stats-grid">
 
-          <div
-            className="stat-card"
-          >
-            <h3>
-              Total Books
-            </h3>
+            <StatCard
+              title="Books"
+              value={stats.totalBooks || 0}
+            />
 
-            <p>0</p>
-          </div>
+            <StatCard
+              title="Students"
+              value={stats.totalStudents || 0}
+            />
 
-          <div
-            className="stat-card"
-          >
-            <h3>
-              Categories
-            </h3>
+            <StatCard
+              title="Teachers"
+              value={stats.totalTeachers || 0}
+            />
 
-            <p>0</p>
-          </div>
+            <StatCard
+              title="Categories"
+              value={stats.totalCategories || 0}
+            />
 
-          <div
-            className="stat-card"
-          >
-            <h3>
-              Issued Books
-            </h3>
+            <StatCard
+              title="Issued Books"
+              value={stats.issuedBooks || 0}
+            />
 
-            <p>0</p>
-          </div>
-
-          <div
-            className="stat-card"
-          >
-            <h3>
-              Students
-            </h3>
-
-            <p>0</p>
           </div>
 
         </div>

@@ -1,0 +1,30 @@
+.books-container{
+
+    flex:1;
+
+    padding:35px;
+}
+
+table{
+
+    width:100%;
+
+    background:white;
+
+    border-collapse:collapse;
+
+    margin-top:20px;
+}
+
+th,
+td{
+
+    border:1px solid #ddd;
+
+    padding:12px;
+}
+
+th{
+
+    background:#f8fafc;
+}

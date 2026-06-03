@@ -25,6 +25,9 @@ require("./routes/categoryRoutes");
 const dashboardRoutes =
 require("./routes/dashboardRoutes");
 
+const userRoutes =
+require("./routes/userRoutes");
+
 connectDB();
 
 const app = express();
@@ -51,6 +54,11 @@ categoryRoutes
 app.use(
 "/api/dashboard",
 dashboardRoutes
+);
+
+app.use(
+"/api/users",
+userRoutes
 );
 
 app.get("/",(req,res)=>{

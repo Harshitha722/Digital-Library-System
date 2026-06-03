@@ -1,5 +1,4 @@
-import { useState }
-from "react";
+import { useState } from "react";
 
 import { useNavigate, Link }
 from "react-router-dom";
@@ -14,19 +13,20 @@ const Register = () => {
   const navigate =
   useNavigate();
 
-  const [form,setForm] =
+  const [form, setForm] =
   useState({
-    name:"",
-    email:"",
-    password:""
+    name: "",
+    email: "",
+    password: "",
+    role: "student"
   });
 
   const handleSubmit =
-  async(e)=>{
+  async (e) => {
 
     e.preventDefault();
 
-    try{
+    try {
 
       await API.post(
         "/auth/register",
@@ -39,17 +39,18 @@ const Register = () => {
 
       navigate("/login");
 
-    }catch(error){
+    } catch (error) {
 
       console.log(error);
 
       alert(
+        error?.response?.data?.message ||
         "Registration Failed"
       );
     }
   };
 
-  return(
+  return (
 
     <div className="register-page">
 
@@ -59,6 +60,10 @@ const Register = () => {
           Create Account
         </h2>
 
+        <p className="register-subtitle">
+          Register as Student or Teacher
+        </p>
+
         <form
           onSubmit={handleSubmit}
         >
@@ -66,34 +71,65 @@ const Register = () => {
           <input
             type="text"
             placeholder="Full Name"
-            onChange={(e)=>
-            setForm({
-              ...form,
-              name:e.target.value
-            })}
+            value={form.name}
+            onChange={(e) =>
+              setForm({
+                ...form,
+                name: e.target.value
+              })
+            }
+            required
           />
 
           <input
             type="email"
             placeholder="Email"
-            onChange={(e)=>
-            setForm({
-              ...form,
-              email:e.target.value
-            })}
+            value={form.email}
+            onChange={(e) =>
+              setForm({
+                ...form,
+                email: e.target.value
+              })
+            }
+            required
           />
 
           <input
             type="password"
             placeholder="Password"
-            onChange={(e)=>
-            setForm({
-              ...form,
-              password:e.target.value
-            })}
+            value={form.password}
+            onChange={(e) =>
+              setForm({
+                ...form,
+                password: e.target.value
+              })
+            }
+            required
           />
 
-          <button>
+          <select
+            value={form.role}
+            onChange={(e) =>
+              setForm({
+                ...form,
+                role: e.target.value
+              })
+            }
+          >
+
+            <option value="student">
+              Student
+            </option>
+
+            <option value="teacher">
+              Teacher
+            </option>
+
+          </select>
+
+          <button
+            type="submit"
+          >
             Register
           </button>
 
@@ -103,8 +139,9 @@ const Register = () => {
           className="login-redirect"
         >
 
-          Already have
-          an account?
+          Already have an account?
+
+          {" "}
 
           <Link to="/login">
             Login

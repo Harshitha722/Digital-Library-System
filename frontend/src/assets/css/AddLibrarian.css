@@ -1,0 +1,28 @@
+.add-librarian-container {
+  flex: 1;
+  padding: 30px;
+}
+
+.add-librarian-container h2 {
+  margin-bottom: 20px;
+}
+
+.add-librarian-container form {
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.add-librarian-container input {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.add-librarian-container button {
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}

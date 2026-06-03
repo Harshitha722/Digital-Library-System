@@ -42,7 +42,27 @@ const Login = () => {
 
       login(res.data);
 
-      navigate("/dashboard");
+      if(res.data.role==="admin")
+navigate("/admin-dashboard");
+
+else if(
+res.data.role==="librarian"
+)
+navigate(
+"/librarian-dashboard"
+);
+
+else if(
+res.data.role==="teacher"
+)
+navigate(
+"/teacher-dashboard"
+);
+
+else
+navigate(
+"/student-dashboard"
+);  
 
     } catch (error) {
 
