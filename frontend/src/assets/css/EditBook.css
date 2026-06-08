@@ -1,0 +1,25 @@
+.edit-book-container{
+
+  flex:1;
+
+  padding:30px;
+
+}
+
+.edit-book-container form{
+
+  display:flex;
+
+  flex-direction:column;
+
+  gap:15px;
+
+  max-width:600px;
+
+  background:white;
+
+  padding:20px;
+
+  border-radius:10px;
+
+}

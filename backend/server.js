@@ -1,8 +1,4 @@
-
 require("dotenv").config();
-
-
-
 
 const express = require("express");
 const cors = require("cors");
@@ -12,9 +8,6 @@ require("./config/db");
 
 const authRoutes =
 require("./routes/authRoutes");
-
-const errorHandler =
-require("./middleware/errorMiddleware");
 
 const bookRoutes =
 require("./routes/bookRoutes");
@@ -28,6 +21,9 @@ require("./routes/dashboardRoutes");
 const userRoutes =
 require("./routes/userRoutes");
 
+const errorHandler =
+require("./middleware/errorMiddleware");
+
 connectDB();
 
 const app = express();
@@ -37,34 +33,36 @@ app.use(cors());
 app.use(express.json());
 
 app.use(
-    "/api/auth",
-    authRoutes
+  "/api/auth",
+  authRoutes
 );
 
 app.use(
-"/api/books",
-bookRoutes
+  "/api/books",
+  bookRoutes
 );
 
 app.use(
-"/api/categories",
-categoryRoutes
+  "/api/categories",
+  categoryRoutes
 );
 
 app.use(
-"/api/dashboard",
-dashboardRoutes
+  "/api/dashboard",
+  dashboardRoutes
 );
 
 app.use(
-"/api/users",
-userRoutes
+  "/api/users",
+  userRoutes
 );
 
-app.get("/",(req,res)=>{
-    res.send(
-        "Digital Library API Running"
-    );
+app.get("/", (req, res) => {
+
+  res.send(
+    "Digital Library API Running"
+  );
+
 });
 
 app.use(errorHandler);
@@ -72,8 +70,10 @@ app.use(errorHandler);
 const PORT =
 process.env.PORT || 5000;
 
-app.listen(PORT,()=>{
-    console.log(
-        `Server Running On Port ${PORT}`
-    );
+app.listen(PORT, () => {
+
+  console.log(
+    `Server Running On Port ${PORT}`
+  );
+
 });

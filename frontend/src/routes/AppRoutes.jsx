@@ -26,6 +26,14 @@ import RoleRoute from "../components/RoleRoute";
 import AddLibrarian
 from "../pages/AddLibrarian";
 
+import AddBook
+from "../pages/AddBook";
+
+import EditBook
+from "../pages/EditBook";
+
+import BookDetails from "../pages/BookDetails";
+
 const AppRoutes = () => {
 
   return (
@@ -166,6 +174,33 @@ const AppRoutes = () => {
    <AddLibrarian />
   </RoleRoute>
  }
+/>
+
+<Route
+ path="/add-book"
+ element={
+  <ProtectedRoute>
+   <AddBook />
+  </ProtectedRoute>
+ }
+/>
+
+<Route
+ path="/edit-book/:id"
+ element={
+  <ProtectedRoute>
+   <EditBook/>
+  </ProtectedRoute>
+ }
+/>
+
+<Route
+  path="/books/:id"
+  element={
+    <ProtectedRoute>
+      <BookDetails />
+    </ProtectedRoute>
+  }
 />
 
       </Routes>

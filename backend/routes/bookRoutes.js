@@ -5,28 +5,47 @@ const router =
 express.Router();
 
 const {
- getBooks,
+
  addBook,
+
+ getBooks,
+
+ getBookById,
+
  updateBook,
+
  deleteBook
+
 }
 =
 require(
-"../controllers/bookController"
+ "../controllers/bookController"
 );
 
-router.get("/",getBooks);
+router.post(
+ "/",
+ addBook
+);
 
-router.post("/",addBook);
+router.get(
+ "/",
+ getBooks
+);
+
+router.get(
+ "/:id",
+ getBookById
+);
 
 router.put(
-"/:id",
-updateBook
+ "/:id",
+ updateBook
 );
 
 router.delete(
-"/:id",
-deleteBook
+ "/:id",
+ deleteBook
 );
 
-module.exports = router;
+module.exports =
+router;

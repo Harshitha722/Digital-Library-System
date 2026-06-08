@@ -28,3 +28,112 @@ th{
 
     background:#f8fafc;
 }
+
+.books-header{
+
+  display:flex;
+
+  justify-content:
+  space-between;
+
+  align-items:center;
+
+  margin-bottom:20px;
+
+}
+
+.search-box{
+
+  padding:10px;
+
+  width:300px;
+
+  border:1px solid #ccc;
+
+  border-radius:8px;
+
+}
+
+.delete-btn{
+
+  background:#dc2626;
+
+  color:white;
+
+  border:none;
+
+  padding:8px 12px;
+
+  border-radius:6px;
+
+  cursor:pointer;
+
+}
+
+.delete-btn:hover{
+
+  background:#b91c1c;
+
+}
+
+.books-actions{
+  display:flex;
+  gap:15px;
+  align-items:center;
+}
+
+.add-book-btn{
+  background:#1e40af;
+  color:white;
+  text-decoration:none;
+  padding:10px 16px;
+  border-radius:8px;
+}
+
+.add-book-btn:hover{
+  opacity:0.9;
+}
+
+.no-books{
+  text-align:center;
+  padding:20px;
+  font-weight:600;
+}
+
+.edit-btn{
+  background:#2563eb;
+  color:white;
+  text-decoration:none;
+  padding:8px 12px;
+  border-radius:6px;
+  margin-right:10px;
+  display:inline-block;
+}
+
+.edit-btn:hover{
+  background:#1d4ed8;
+}
+
+.category-filter{
+
+  padding:10px;
+
+  border:1px solid #ccc;
+
+  border-radius:8px;
+
+  min-width:180px;
+
+
+  color:black;
+
+  background:white;
+}
+
+.category-filter option{
+
+  color:black;
+
+  background:white;
+
+}

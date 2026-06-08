@@ -45,6 +45,10 @@ const Sidebar = () => {
             <Link to="/borrow-history">
               Borrow History
             </Link>
+
+            <Link to="/add-book">
+ Add Book
+</Link>
           </>
         )
       }

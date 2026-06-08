@@ -1,0 +1,57 @@
+.book-details{
+
+  flex:1;
+
+  padding:30px;
+
+}
+
+.book-details h2{
+
+  margin-bottom:20px;
+
+}
+
+.book-details p{
+
+  margin-bottom:12px;
+
+  font-size:16px;
+
+}
+
+.book-details{
+
+  flex:1;
+
+  padding:30px;
+
+}
+
+.book-details h2{
+
+  margin-bottom:20px;
+
+}
+
+.book-details p{
+
+  margin-bottom:12px;
+
+  font-size:16px;
+
+}
+
+.book-cover{
+
+  margin-top:20px;
+
+  width:200px;
+
+  height:auto;
+
+  border-radius:10px;
+
+  border:1px solid #ddd;
+
+}
