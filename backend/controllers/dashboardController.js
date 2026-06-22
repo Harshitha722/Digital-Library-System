@@ -32,9 +32,8 @@ async(req,res)=>{
     const totalCategories =
     await Category.countDocuments();
 
-    const issuedBooks =
-    await BorrowRecord.countDocuments({
-        status:"issued"
+    const issuedBooks = await BorrowRecord.countDocuments({
+        status: { $in: ["active", "overdue"] }
     });
 
     res.json({

@@ -15,6 +15,10 @@ const Categories = () => {
   const [categoryName,
   setCategoryName] =
   useState("");
+  const [editingId, setEditingId] = useState(null);
+  const [editingName, setEditingName] = useState("");
+
+  const user = JSON.parse(localStorage.getItem('user'));
 
   useEffect(() => {
 
@@ -72,6 +76,39 @@ const Categories = () => {
     }
   };
 
+  const startEdit = (category) => {
+    setEditingId(category._id);
+    setEditingName(category.categoryName);
+  };
+
+  const cancelEdit = () => {
+    setEditingId(null);
+    setEditingName("");
+  };
+
+  const saveEdit = async (id) => {
+    try {
+      await API.put(`/categories/${id}`, { categoryName: editingName });
+      const res = await API.get(`/categories`);
+      setCategories(res.data);
+      cancelEdit();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const deleteCategoryById = async (id) => {
+    const confirmDelete = window.confirm('Delete this category?');
+    if (!confirmDelete) return;
+    try {
+      await API.delete(`/categories/${id}`);
+      const res = await API.get(`/categories`);
+      setCategories(res.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
 
     <>
@@ -118,6 +155,9 @@ const Categories = () => {
                 <th>
                   Category
                 </th>
+                <th>
+                  Actions
+                </th>
 
               </tr>
 
@@ -126,23 +166,43 @@ const Categories = () => {
             <tbody>
 
               {
-                categories.map(
-                  (category) => (
+                categories.map((category) => (
 
-                    <tr
-                      key={category._id}
-                    >
+                  <tr key={category._id}>
 
-                      <td>
-                        {
-                          category.categoryName
-                        }
-                      </td>
+                    <td>
+                      {editingId === category._id ? (
+                        <input
+                          value={editingName}
+                          onChange={(e) => setEditingName(e.target.value)}
+                        />
+                      ) : (
+                        category.categoryName
+                      )}
+                    </td>
 
-                    </tr>
+                    <td>
+                      {editingId === category._id ? null : (
+                        (user?.role === 'admin' || user?.role === 'librarian') && (
+                          <>
+                            <button onClick={() => startEdit(category)}>Edit</button>
+                            <button onClick={() => deleteCategoryById(category._id)}>Delete</button>
+                          </>
+                        )
+                      )}
 
-                  )
-                )
+                      {editingId === category._id && (
+                        <>
+                          <button onClick={() => saveEdit(category._id)}>Save</button>
+                          <button onClick={cancelEdit}>Cancel</button>
+                        </>
+                      )}
+
+                    </td>
+
+                  </tr>
+
+                ))
               }
 
             </tbody>

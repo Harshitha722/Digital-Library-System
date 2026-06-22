@@ -29,6 +29,7 @@ const EditBook = () => {
     availableCopies:1
 
   });
+  const [file, setFile] = useState(null);
 
   useEffect(() => {
 
@@ -66,16 +67,24 @@ const EditBook = () => {
 
     e.preventDefault();
 
-    await API.put(
-      `/books/${id}`,
-      form
-    );
+    try {
+      const formData = new FormData();
 
-    alert(
-      "Book Updated"
-    );
+      Object.keys(form).forEach(key => {
+        formData.append(key, form[key]);
+      });
 
-    navigate("/books");
+      if (file) formData.append('cover', file);
+
+      await API.put(`/books/${id}`, formData);
+
+      alert("Book Updated");
+
+      navigate("/books");
+    } catch (error) {
+      console.error(error);
+      alert("Failed to update book");
+    }
 
   };
 
@@ -114,6 +123,13 @@ const EditBook = () => {
             name="isbn"
             value={form.isbn}
             onChange={handleChange}
+            />
+
+            <input
+            type="file"
+            name="cover"
+            accept="image/*"
+            onChange={(e)=> setFile(e.target.files[0])}
             />
 
             <button>

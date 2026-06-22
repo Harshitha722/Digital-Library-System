@@ -6,13 +6,15 @@ async (req, res) => {
 
   try {
 
-    const book =
-    await Book.create(
-      req.body
-    );
+    const data = { ...req.body };
 
-    res.status(201)
-    .json(book);
+    if (req.file) {
+      data.coverImage = req.file.path.replace(/\\/g, "/");
+    }
+
+    const book = await Book.create(data);
+
+    res.status(201).json(book);
 
   } catch (error) {
 
@@ -98,22 +100,15 @@ async (req, res) => {
 
   try {
 
-    const book =
-    await Book.findByIdAndUpdate(
+    const data = { ...req.body };
 
-      req.params.id,
+    if (req.file) {
+      data.coverImage = req.file.path.replace(/\\/g, "/");
+    }
 
-      req.body,
-
-      {
-        new: true
-      }
-
-    )
-    .populate(
-      "category",
-      "categoryName"
-    );
+    const book = await Book.findByIdAndUpdate(req.params.id, data, {
+      new: true
+    }).populate("category", "categoryName");
 
     res.json(book);
 

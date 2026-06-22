@@ -1,33 +1,38 @@
-const express =
-require("express");
+const express = require("express");
 
-const router =
-express.Router();
+const router = express.Router();
 
 const {
- getCategories,
- addCategory,
- deleteCategory
-}
-=
-require(
-"../controllers/categoryController"
-);
+  getCategories,
+  addCategory,
+  deleteCategory,
+  updateCategory
+} = require("../controllers/categoryController");
 
-router.get(
-"/",
-getCategories
-);
+const protect = require('../middleware/authMiddleware');
+const authorizeRoles = require('../middleware/roleMiddleware');
+
+router.get("/", getCategories);
 
 router.post(
-"/",
-addCategory
+  "/",
+  protect,
+  authorizeRoles('admin','librarian'),
+  addCategory
+);
+
+router.put(
+  '/:id',
+  protect,
+  authorizeRoles('admin','librarian'),
+  updateCategory
 );
 
 router.delete(
-"/:id",
-deleteCategory
+  '/:id',
+  protect,
+  authorizeRoles('admin','librarian'),
+  deleteCategory
 );
 
-module.exports =
-router;
+module.exports = router;

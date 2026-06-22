@@ -21,30 +21,43 @@ const {
 require(
  "../controllers/bookController"
 );
+const upload = require("../middleware/uploadMiddleware");
+const protect = require('../middleware/authMiddleware');
+const authorizeRoles = require('../middleware/roleMiddleware');
 
 router.post(
- "/",
- addBook
+	"/",
+	protect,
+	authorizeRoles('admin','librarian'),
+	upload.single("cover"),
+	addBook
 );
 
 router.get(
- "/",
- getBooks
+	"/",
+	protect,
+	getBooks
 );
 
 router.get(
- "/:id",
- getBookById
+	"/:id",
+	protect,
+	getBookById
 );
 
 router.put(
- "/:id",
- updateBook
+	"/:id",
+	protect,
+	authorizeRoles('admin','librarian'),
+	upload.single("cover"),
+	updateBook
 );
 
 router.delete(
- "/:id",
- deleteBook
+	"/:id",
+	protect,
+	authorizeRoles('admin','librarian'),
+	deleteBook
 );
 
 module.exports =

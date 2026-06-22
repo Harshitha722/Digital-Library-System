@@ -2,6 +2,7 @@ require("dotenv").config();
 
 const express = require("express");
 const cors = require("cors");
+const path = require("path");
 
 const connectDB =
 require("./config/db");
@@ -14,6 +15,9 @@ require("./routes/bookRoutes");
 
 const categoryRoutes =
 require("./routes/categoryRoutes");
+
+const borrowRoutes = require("./routes/borrowRoutes");
+const fineRoutes = require("./routes/fineRoutes");
 
 const dashboardRoutes =
 require("./routes/dashboardRoutes");
@@ -32,6 +36,12 @@ app.use(cors());
 
 app.use(express.json());
 
+// Serve uploaded files
+app.use(
+  "/uploads",
+  express.static(path.join(__dirname, "uploads"))
+);
+
 app.use(
   "/api/auth",
   authRoutes
@@ -45,6 +55,22 @@ app.use(
 app.use(
   "/api/categories",
   categoryRoutes
+);
+
+app.use(
+  "/api/borrows",
+  borrowRoutes
+);
+
+app.use(
+  "/api/fines",
+  fineRoutes
+);
+
+const ebookRoutes = require("./routes/eBookRoutes");
+app.use(
+  "/api/ebooks",
+  ebookRoutes
 );
 
 app.use(

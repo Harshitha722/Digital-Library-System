@@ -26,6 +26,7 @@ const AddBook = () => {
     availableCopies:1
 
   });
+  const [file, setFile] = useState(null);
 
   useEffect(()=>{
 
@@ -76,9 +77,19 @@ const AddBook = () => {
 
     try{
 
+      const formData = new FormData();
+
+      Object.keys(form).forEach(key => {
+        formData.append(key, form[key]);
+      });
+
+      if (file) {
+        formData.append('cover', file);
+      }
+
       await API.post(
         "/books",
-        form
+        formData
       );
 
       alert(
@@ -97,6 +108,7 @@ const AddBook = () => {
         availableCopies:1
 
       });
+      setFile(null);
 
     }
     catch(error){
@@ -212,6 +224,13 @@ const AddBook = () => {
             placeholder="Available Copies"
             value={form.availableCopies}
             onChange={handleChange}
+            />
+
+            <input
+            type="file"
+            name="cover"
+            accept="image/*"
+            onChange={(e)=> setFile(e.target.files[0])}
             />
 
             <button>

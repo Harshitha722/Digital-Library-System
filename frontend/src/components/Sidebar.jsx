@@ -30,6 +30,10 @@ const Sidebar = () => {
               Books
             </Link>
 
+            <Link to="/ebooks">
+              E-Books
+            </Link>
+
             <Link to="/categories">
               Categories
             </Link>
@@ -42,13 +46,28 @@ const Sidebar = () => {
               Add Librarian
             </Link>
 
+            <Link to="/issue-book">
+              Issue Book
+            </Link>
+
+            <Link to="/return-book">
+              Return Book
+            </Link>
+
             <Link to="/borrow-history">
               Borrow History
             </Link>
+            <Link to="/fines">
+              Fines
+            </Link>
 
             <Link to="/add-book">
- Add Book
-</Link>
+              Add Book
+            </Link>
+
+            <Link to="/add-ebook">
+              Upload E-Book
+            </Link>
           </>
         )
       }
@@ -66,12 +85,31 @@ const Sidebar = () => {
               Books
             </Link>
 
+            <Link to="/ebooks">
+              E-Books
+            </Link>
+
             <Link to="/categories">
               Categories
             </Link>
 
+            <Link to="/issue-book">
+              Issue Book
+            </Link>
+
+            <Link to="/return-book">
+              Return Book
+            </Link>
+
             <Link to="/borrow-history">
               Borrow History
+            </Link>
+            <Link to="/fines">
+              Fines
+            </Link>
+
+            <Link to="/add-ebook">
+              Upload E-Book
             </Link>
           </>
         )
@@ -88,6 +126,10 @@ const Sidebar = () => {
 
             <Link to="/books">
               Books
+            </Link>
+
+            <Link to="/ebooks">
+              E-Books
             </Link>
 
             <Link to="/borrow-history">
@@ -108,6 +150,10 @@ const Sidebar = () => {
 
             <Link to="/books">
               Books
+            </Link>
+
+            <Link to="/ebooks">
+              E-Books
             </Link>
 
             <Link to="/borrow-history">

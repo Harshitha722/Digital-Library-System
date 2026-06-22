@@ -19,6 +19,14 @@ import Books from "../pages/Books";
 import Categories from "../pages/Categories";
 import Users from "../pages/Users";
 import BorrowHistory from "../pages/BorrowHistory";
+import IssueBook from "../pages/IssueBook";
+import ReturnBook from "../pages/ReturnBook";
+import FineDashboard from "../pages/FineDashboard";
+import PendingFines from "../pages/PendingFines";
+import FinePayment from "../pages/FinePayment";
+import EBooks from "../pages/EBooks";
+import AddEBook from "../pages/AddEBook";
+import EBookDetails from "../pages/EBookDetails";
 
 import ProtectedRoute from "../components/ProtectedRoute";
 import RoleRoute from "../components/RoleRoute";
@@ -148,6 +156,24 @@ const AppRoutes = () => {
         />
 
         <Route
+          path="/issue-book"
+          element={
+            <ProtectedRoute>
+              <IssueBook />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/return-book"
+          element={
+            <ProtectedRoute>
+              <ReturnBook />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
           path="/borrow-history"
           element={
             <ProtectedRoute>
@@ -156,7 +182,95 @@ const AppRoutes = () => {
           }
         />
 
-        {/* Invalid Routes */}
+        <Route
+          path="/fines"
+          element={
+            <ProtectedRoute>
+              <FineDashboard />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/pending-fines"
+          element={
+            <ProtectedRoute>
+              <PendingFines />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/fine-payment/:id"
+          element={
+            <ProtectedRoute>
+              <FinePayment />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/add-librarian"
+          element={
+            <RoleRoute allowedRoles={["admin"]}>
+              <AddLibrarian />
+            </RoleRoute>
+          }
+        />
+
+        <Route
+          path="/add-book"
+          element={
+            <ProtectedRoute>
+              <AddBook />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/edit-book/:id"
+          element={
+            <ProtectedRoute>
+              <EditBook />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/books/:id"
+          element={
+            <ProtectedRoute>
+              <BookDetails />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/ebooks"
+          element={
+            <ProtectedRoute>
+              <EBooks />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/add-ebook"
+          element={
+            <RoleRoute allowedRoles={["admin", "librarian"]}>
+              <AddEBook />
+            </RoleRoute>
+          }
+        />
+
+        <Route
+          path="/ebooks/:id"
+          element={
+            <ProtectedRoute>
+              <EBookDetails />
+            </ProtectedRoute>
+          }
+        />
 
         <Route
           path="*"
@@ -164,44 +278,6 @@ const AppRoutes = () => {
             <Navigate to="/login" />
           }
         />
-
-<Route
- path="/add-librarian"
- element={
-  <RoleRoute
-   allowedRoles={["admin"]}
-  >
-   <AddLibrarian />
-  </RoleRoute>
- }
-/>
-
-<Route
- path="/add-book"
- element={
-  <ProtectedRoute>
-   <AddBook />
-  </ProtectedRoute>
- }
-/>
-
-<Route
- path="/edit-book/:id"
- element={
-  <ProtectedRoute>
-   <EditBook/>
-  </ProtectedRoute>
- }
-/>
-
-<Route
-  path="/books/:id"
-  element={
-    <ProtectedRoute>
-      <BookDetails />
-    </ProtectedRoute>
-  }
-/>
 
       </Routes>
 

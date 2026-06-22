@@ -29,8 +29,23 @@ const Books = () => {
     localStorage.getItem("user")
   );
 
-  const refreshBooks =
-  async () => {
+  const borrowBook = async (bookId) => {
+    if (!user) {
+      alert('Please login to borrow books');
+      return;
+    }
+
+    try {
+      await API.post('/borrows/issue', { bookId, dueDays: 14 });
+      alert('Book issued successfully');
+      await refreshBooks();
+    } catch (error) {
+      console.error(error);
+      alert(error.response?.data?.message || 'Failed to issue book');
+    }
+  };
+
+  const refreshBooks = async () => {
 
     try {
 
@@ -320,6 +335,12 @@ const Books = () => {
                   Delete
                 </button>
               </>
+            )
+          }
+
+          {
+            (user?.role === 'student' || user?.role === 'teacher') && book.availableCopies > 0 && (
+              <button className="borrow-btn" onClick={() => borrowBook(book._id)}>Borrow</button>
             )
           }
 
